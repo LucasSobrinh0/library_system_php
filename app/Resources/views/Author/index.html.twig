@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista de Autores</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.name }}</td>
+                    <td>
+                        <a href="{{ path('author_show', {'id': author.id}) }}">Visualizar</a>
+                        <a href="{{ path('author_edit', {'id': author.id}) }}">Editar</a>
+                        {% include 'Author/_delete_form.html.twig' with { 'form': delete_forms[author.id] } %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('author_new') }}">Criar novo autor</a>
+{% endblock %}

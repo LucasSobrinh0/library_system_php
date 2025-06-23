@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Novo Autor</h1>
+    {% include 'Author/_form.html.twig' with { 'form': form, 'button_label': 'Criar' } %}
+    <a href="{{ path('author_index') }}">Voltar à lista</a>
+{% endblock %}

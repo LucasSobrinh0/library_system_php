@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Detalhes do Autor</h1>
+
+    <p><strong>ID:</strong> {{ author.id }}</p>
+    <p><strong>Nome:</strong> {{ author.name }}</p>
+
+    <a href="{{ path('author_index') }}">Voltar à lista</a>
+    <a href="{{ path('author_edit', { 'id': author.id }) }}">Editar</a>
+    {% include 'Author/_delete_form.html.twig' with { 'form': delete_forms } %}
+{% endblock %}

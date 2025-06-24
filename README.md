@@ -75,7 +75,7 @@ php app/console doctrine:schema:update --dump-sql
 
 Accessar página do sistema online
 
-http://localhost/library_system/web/app_dev.php
+http://localhost/library_system_php/web/app_dev.php
 
 Debugar rotas
 php app/console router:debug

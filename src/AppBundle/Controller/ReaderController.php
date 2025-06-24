@@ -20,11 +20,33 @@ class ReaderController extends Controller
     /**
      * @Route("/", name="reader_index")
      */
-    public function indexAction()
-    {
-        $readers = $this->getDoctrine()
-                        ->getRepository(Reader::class)
-                        ->findAll();
+    public function indexAction(Request $request)
+        {// 1. captura o único parâmetro
+        $q = trim($request->query->get('q'));
+
+        // 2. monta o QueryBuilder
+        $qb = $this->getDoctrine()
+                   ->getRepository(Reader::class)
+                   ->createQueryBuilder('r');
+
+        if ($q !== '') {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->like('r.name',  ':q'),
+                    $qb->expr()->like('r.email', ':q'),
+                    $qb->expr()->like('r.phone', ':q'),
+                    $qb->expr()->like('r.cpf', ':q')
+                )
+            )
+            ->setParameter('q', '%'.$q.'%');
+        }
+
+        // 3. executa e ordena
+        $readers = $qb
+            ->orderBy('r.name','ASC')
+            ->getQuery()
+            ->getResult();
+
         $deleteForms = [];
         foreach ($readers as $reader) {
             $deleteForms[$reader->getId()] = $this->createDeleteForm($reader)->createView();
@@ -32,7 +54,8 @@ class ReaderController extends Controller
 
         return $this->render('Reader/index.html.twig', [
             'readers' => $readers,
-            'delete_forms' => $deleteForms
+            'delete_forms' => $deleteForms,
+            'search' => ['q' => $q],
         ]);
     }
 

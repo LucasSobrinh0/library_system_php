@@ -3,6 +3,14 @@
 {% block body %}
 
 <h1>Leitores</h1>
+<form method="get" class="form-inline mb-3">
+    <input type="text"
+           name="q"
+           value="{{ search.q|default('') }}"
+           placeholder="Pesquisar por nome, e-mail, telefone ou cpf"
+           class="form-control mr-2">
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
 <table class="table">
     <thead>
       <tr>

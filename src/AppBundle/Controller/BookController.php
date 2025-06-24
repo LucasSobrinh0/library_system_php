@@ -22,11 +22,19 @@ class BookController extends Controller
     /**
      * @Route("/", name="book_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $books = $this->getDoctrine()
                         ->getRepository(Book::class)
                         ->findAll();
+        $term = $request->query->get('q');
+        $repo = $this->getDoctrine()->getRepository(Book::class);
+
+        if ($term) {
+            $books = $repo->search($term);
+        } else {
+            $books = $repo->findAll();
+        }
         $deleteForms = [];
         foreach ($books as $book) {
             $deleteForms[$book->getId()] = $this->createDeleteForm($book)->createView();

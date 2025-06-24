@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
  * @ORM\Table(
  *      name="Book",
  *      uniqueConstraints={@ORM\UniqueConstraint(name="isbn_idx", columns={"isbn"})}

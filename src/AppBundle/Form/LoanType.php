@@ -49,9 +49,10 @@ class LoanType extends AbstractType
                     'RETURNED'     => 'RETURNED',
                 ],
                 // define o valor padrão
-                'data'        => 'NOT_RETURNED',
-                'expanded'    => false,
-                'multiple'    => false,
+                // 'data'        => 'NOT_RETURNED',
+                // 'expanded'    => false,
+                // 'multiple'    => false,
+                'required' => true,
             ])
         ->add('save', SubmitType::class,[
             'label' => 'Salvar'

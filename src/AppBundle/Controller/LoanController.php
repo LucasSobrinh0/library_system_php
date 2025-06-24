@@ -41,7 +41,7 @@ class LoanController extends Controller
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em= $this->getDoctrine()->getManager();
         $loan = new Loan();
         $form = $this->createForm(LoanType::class, $loan);
         $form->handleRequest($request);

@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Biblioteca{% endblock %}</title>
+
+    <style>
+      .nav-link{color:#212529;font-weight:500;transition:color .15s}
+      .nav-link:hover,.nav-link.active{color:#0d6efd}
+      @media(max-width:576px){.navbar-nav{gap:1rem 1.5rem}}
+    </style>
+
+    {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav class="navbar navbar-expand bg-light shadow-sm py-2">
+  <div class="container-fluid gap-4">
+
+    {# Branding -------------------------------------------------------- #}
+    <a href="{{ path('reader_index') }}"
+       class="navbar-brand d-flex align-items-center fw-semibold">
+      <i class="bi bi-file-earmark-text fs-4 me-2"></i>
+      <span class="fs-5">Biblioteca</span>
+    </a>
+
+    {# Links ----------------------------------------------------------- #}
+    <ul class="navbar-nav flex-row flex-wrap ms-auto gap-3">
+      <li class="nav-item">
+        <a class="
+                  {% if app.request.get('_route') starts with 'reader' %}active{% endif %}"
+           href="{{ path('reader_index') }}">
+          <i class=""></i><span>Leitores</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="
+                  {% if app.request.get('_route') starts with 'book' %}active{% endif %}"
+           href="{{ path('book_index') }}">
+          <i class=""></i><span>Livros</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="
+                  {% if app.request.get('_route') starts with 'loan' %}active{% endif %}"
+           href="{{ path('loan_index') }}">
+          <i class=""></i><span>Emprestimos</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="
+                  {% if app.request.get('_route') starts with 'category' %}active{% endif %}"
+           href="{{ path('category_index') }}">
+          <i class=""></i><span>Categorias</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="
+                  {% if app.request.get('_route') starts with 'author' %}active{% endif %}"
+           href="{{ path('author_index') }}">
+          <i class=""></i><span>Autores</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4/dist/css/select2.min.css" rel="stylesheet"/>
 </html>

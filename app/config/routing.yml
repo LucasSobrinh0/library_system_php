@@ -1,3 +1,7 @@
+home_redirect:
+    path: /
+    defaults: { _controller: AppBundle:Reader:index }
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

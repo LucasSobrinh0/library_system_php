@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Novo Emprestimo</h1>
+    <h1>Novo Empréstimo</h1>
+
+    {# dispara erros #}
+    {% for msg in app.session.flashbag.get('error') %}
+      <div class="alert alert-danger">{{ msg }}</div>
+    {% endfor %}
+
+    {# dispara sucessos, se precisar #}
+    {% for msg in app.session.flashbag.get('success') %}
+      <div class="alert alert-success">{{ msg }}</div>
+    {% endfor %}
+
     {{ form_start(form) }}
-    {{ form_row(form.book) }}
-    {{ form_row(form.reader) }}
-    {{ form_row(form.loanDate) }}
-    {{ form_row(form.returnDate) }}
-    {{ form_row(form.save) }}
+      {{ form_row(form.book) }}
+      {{ form_row(form.reader) }}
+      {{ form_row(form.loanDate) }}
+      {{ form_row(form.returnDate) }}
+      {{ form_row(form.save) }}
     {{ form_end(form) }}
     <a href="{{ path('loan_index') }}">Voltar à lista</a>
 {% endblock %}

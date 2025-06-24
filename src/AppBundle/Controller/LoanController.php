@@ -51,15 +51,16 @@ class LoanController extends Controller
             $existing = $em->getRepository(Loan::class)
                 ->findOneBy([
                     'book'       => $loan->getBook(),
-                    'returnDate' => null
+                    'status' => 'NOT_RETURNED',
                 ])
             ;
 
             if ($existing) {
-                $this->addFlash('error',
-                    'Este livro já está emprestado desde '
-                    . $existing->getLoanDate()->format('d/m/Y')
-                );
+                $this->addFlash('error', sprintf(
+                'O livro “%s” já está emprestado desde %s.',
+                $existing->getBook()->getTitle(),
+                $existing->getLoanDate()->format('d/m/Y')
+            ));
 
                 // nesse caso, apenas re-renderiza o formulário:
                 return $this->render('Loan/new.html.twig', [

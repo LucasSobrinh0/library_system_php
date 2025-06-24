@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1>Detalhes do Emprestimo</h1>
+  <p><strong>Livro:</strong> {{ loan.book }}</p>
+  <p><strong>Leitor:</strong>  {{ loan.reader }}</p>
+  <p><strong>Data de emprestimo:</strong>   {{ loan.loanDate|date('d/m/Y') }}</p>
+  <p><strong>Data de devolução:</strong> {{ loan.returnDate|date('d/m/Y') }}</p>
+  <p><strong>Data de devolução:</strong> {{ loan.status }}</p>
+  <a href="{{ path('loan_index') }}">Voltar</a>
+  <a href="{{ path('loan_edit', {'id': loan.id}) }}">Editar</a>
+  {% include 'Loan/_delete_form.html.twig' with { 'form': delete_forms } %}
+{% endblock %}

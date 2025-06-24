@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Emprestimos</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Livro</th>
+        <th>Leitor</th>
+        <th>Data de Emprestimo</th>
+        <th>Data de Devolução</th>
+        <th>Ações</th>
+        <th>Situação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for loan in loans %}
+        <tr>
+          <td>{{ loan.book }}</td>
+          <td>{{ loan.reader }}</td>
+          <td>{{ loan.loanDate |date('d/m/Y')}}</td>
+          <td>{{ loan.returnDate|date('d/m/Y') }}</td>
+          <td>{{ loan.returnDate|date('d/m/Y') }}</td>
+          <td>
+            <a href="{{ path('loan_show',  {'id': loan.id}) }}">Ver</a>
+            <a href="{{ path('loan_edit',  {'id': loan.id}) }}">Editar</a>
+            {{ form_start(delete_forms[loan.id]) }}
+              <button class="btn btn-danger btn-sm"
+                      onclick="return confirm('Excluir este Emprestimo?')">
+                Excluir
+              </button>
+            {{ form_end(delete_forms[loan.id]) }}
+          </td>
+          <td>{{ loan.status }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('loan_new') }}" class="btn btn-success">Novo Emprestimo</a>
+{% endblock %}

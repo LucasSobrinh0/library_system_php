@@ -25,19 +25,19 @@ Get-ChildItem -Recurse -Filter '*~' | Remove-Item -Force
 
 Se precisar de consultas customizadas, crie repositórios para suas entidades:
 
-php app/console doctrine:generate:entities AppBundle
+php app/console doctrine:generate:entities AppBundle:Loan
 
 2. Criar os Formulários
 
 Para cada entidade que será manipulada por formulários (Book, Category, Author, User, etc):
 
-php app/console doctrine:generate:form AppBundle:Author
+php app/console doctrine:generate:form AppBundle:Loan
 
 3. Criar os Controllers
 
 Crie os controllers com ações list, new, edit, delete, por exemplo:
 
-php app/console generate:controller --controller=Leitor --route-format=annotation
+php app/console generate:controller --controller=Loan --route-format=annotation
 
 Digite AppBundle:{nome do controlador}
 

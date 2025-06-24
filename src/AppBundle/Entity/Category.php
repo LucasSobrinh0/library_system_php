@@ -29,9 +29,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     private $title;
 
     public function __toString()
-{
-    return $this->title;
-}
+    {
+        return $this->title;
+    }
 
     /**
      * Get id

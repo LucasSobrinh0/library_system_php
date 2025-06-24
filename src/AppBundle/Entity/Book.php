@@ -59,6 +59,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
      */
     private $author;
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     /**
      * Get id
      *

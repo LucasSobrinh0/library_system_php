@@ -61,6 +61,11 @@ class Reader
      */
     private $cpf;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getId()
     {
         return $this->id;

@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editar Emprestimo</h1>
+    {% include 'Loan/_form.html.twig' with { 'form': form, 'button_label': 'Atualizar' } %}
+    <a href="{{ path('loan_index') }}">Voltar à lista</a>
+{% endblock %}

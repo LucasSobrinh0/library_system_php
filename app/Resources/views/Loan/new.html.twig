@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Novo Emprestimo</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.book) }}
+    {{ form_row(form.reader) }}
+    {{ form_row(form.loanDate) }}
+    {{ form_row(form.returnDate) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+    <a href="{{ path('loan_index') }}">Voltar à lista</a>
+{% endblock %}

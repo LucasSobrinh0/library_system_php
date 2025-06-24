@@ -21,7 +21,6 @@
           <td>{{ loan.reader }}</td>
           <td>{{ loan.loanDate |date('d/m/Y')}}</td>
           <td>{{ loan.returnDate|date('d/m/Y') }}</td>
-          <td>{{ loan.returnDate|date('d/m/Y') }}</td>
           <td>
             <a href="{{ path('loan_show',  {'id': loan.id}) }}">Ver</a>
             <a href="{{ path('loan_edit',  {'id': loan.id}) }}">Editar</a>

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Novo Livro</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.isbn) }}
+    {{ form_row(form.ano) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+    <a href="{{ path('book_index') }}">Voltar à lista</a>
+{% endblock %}

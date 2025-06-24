@@ -48,13 +48,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     private $ano;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
      * @ORM\JoinColumn(nullable=false, onDelete="RESTRICT")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Author")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author")
      * @ORM\JoinColumn(nullable=false, onDelete="RESTRICT")
      */
     private $author;

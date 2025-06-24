@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Detalhes da Categoria</h1>
+
+    <p><strong>ID:</strong> {{ category.id }}</p>
+    <p><strong>Nome:</strong> {{ category.title }}</p>
+
+    <a href="{{ path('category_index') }}">Voltar à lista</a>
+    <a href="{{ path('category_edit', { 'id': category.id }) }}">Editar</a>
+    {% include 'Category/_delete_form.html.twig' with { 'form': delete_forms } %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Lista de Categorias</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.title }}</td>
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}">Visualizar</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">Editar</a>
+                        {% include 'Category/_delete_form.html.twig' with { 'form': delete_forms[category.id] } %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('category_new') }}">Criar nova Categoria</a>
+{% endblock %}

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Category;
 use AppBundle\Form\CategoryType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 
 /**
@@ -20,16 +21,16 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
-        $categorys = $this->getDoctrine()
+        $categories = $this->getDoctrine()
                         ->getRepository(Category::class)
                         ->findAll();
         $deleteForms = [];
-        foreach ($categorys as $category) {
+        foreach ($categories as $category) {
             $deleteForms[$category->getId()] = $this->createDeleteForm($category)->createView();
         }
 
-        return $this->render('category/index.html.twig', [
-            'categorys' => $categorys,
+        return $this->render('Category/index.html.twig', [
+            'categories' => $categories,
             'delete_forms' => $deleteForms
         ]);
     }
@@ -51,7 +52,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('Category/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -77,7 +78,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute('category_index'); // E retorna ao index
         };
 
-        return $this->render('category/edit.html.twig', ['form' => $form->createView(), 'category' => $category,]); // Renderiza no edit
+        return $this->render('Category/edit.html.twig', ['form' => $form->createView(), 'category' => $category,]); // Renderiza no edit
     }
 
     /**
@@ -94,7 +95,7 @@ class CategoryController extends Controller
 
         $deleteForm = $this->createDeleteForm($category);
 
-        return $this->render('category/show.html.twig', [
+        return $this->render('Category/show.html.twig', [
         'category' => $category,
         'delete_forms' => $deleteForm->createView(),]);// envia para a view
     }
@@ -113,7 +114,7 @@ class CategoryController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute("category_index");
+        return $this->redirectToRoute("Category_index");
     }
 
     public function createDeleteForm(Category $category){

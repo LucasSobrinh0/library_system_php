@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Livros</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>ISBN</th>
+        <th>Ano</th>
+        <th>Autor</th>
+        <th>Categoria</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td>{{ book.title }}</td>
+          <td>{{ book.isbn }}</td>
+          <td>{{ book.ano }}</td>
+          <td>{{ book.author.name }}</td>
+          <td>{{ book.category.title }}</td>
+          <td>
+            <a href="{{ path('book_show',  {'id': book.id}) }}">Ver</a>
+            <a href="{{ path('book_edit',  {'id': book.id}) }}">Editar</a>
+            {{ form_start(delete_forms[book.id]) }}
+              <button class="btn btn-danger btn-sm"
+                      onclick="return confirm('Excluir este livro?')">
+                Excluir
+              </button>
+            {{ form_end(delete_forms[book.id]) }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('book_new') }}" class="btn btn-success">Novo Livro</a>
+{% endblock %}

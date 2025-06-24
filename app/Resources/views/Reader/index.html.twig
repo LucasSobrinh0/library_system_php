@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Leitores</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Data de Nascimento</th>
+        <th>CPF</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reader in readers %}
+        <tr>
+          <td>{{ reader.name }}</td>
+          <td>{{ reader.phone }}</td>
+          <td>{{ reader.email }}</td>
+          <td>{{ reader.dateOfBirth|date('d/m/Y') }}</td>
+          <td>{{ reader.cpf }}</td>
+          <td>
+            <a href="{{ path('reader_show',  {'id': reader.id}) }}">Ver</a>
+            <a href="{{ path('reader_edit',  {'id': reader.id}) }}">Editar</a>
+            {{ form_start(delete_forms[reader.id]) }}
+              <button class="btn btn-danger btn-sm"
+                      onclick="return confirm('Excluir este Leitor?')">
+                Excluir
+              </button>
+            {{ form_end(delete_forms[reader.id]) }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('reader_new') }}" class="btn btn-success">Novo Leitor</a>
+{% endblock %}

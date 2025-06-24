@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editar Leitor</h1>
+    {% include 'Reader/_form.html.twig' with { 'form': form, 'button_label': 'Atualizar' } %}
+    <a href="{{ path('reader_index') }}">Voltar à lista</a>
+{% endblock %}

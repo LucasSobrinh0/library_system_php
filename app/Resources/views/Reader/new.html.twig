@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Novo Livro</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.dateOfBirth) }}
+    {{ form_row(form.cpf) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+    <a href="{{ path('reader_index') }}">Voltar à lista</a>
+{% endblock %}

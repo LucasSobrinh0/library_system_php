@@ -1,3 +1,10 @@
+composer install
+
+php app/console doctrine:schema:update --force   
+
+php app/console doctrine:schema:update --dump-sql
+
+
 Como criar um projeto em symfony 2.x
 
 composer create-project symfony/framework-standard-edition library_system "2.8.*" --no-interaction
@@ -30,7 +37,7 @@ php app/console doctrine:generate:form AppBundle:Author
 
 Crie os controllers com ações list, new, edit, delete, por exemplo:
 
-php app/console generate:controller --controller=Category --route-format=annotation
+php app/console generate:controller --controller=Leitor --route-format=annotation
 
 Digite AppBundle:{nome do controlador}
 

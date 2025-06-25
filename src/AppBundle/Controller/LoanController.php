@@ -20,11 +20,38 @@ class LoanController extends Controller
 /**
      * @Route("/", name="loan_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $loans = $this->getDoctrine()
-                        ->getRepository(Loan::class)
-                        ->findAll();
+        $q = trim($request->query->get('q'));
+        $loanDate = $request->query->get('loanDate');
+        $returnDate = $request->query->get('returnDate');
+
+        $qb = $this->getDoctrine()
+                   ->getRepository(Loan::class)
+                   ->createQueryBuilder('r')
+                   ->leftJoin('r.book', 'b')
+                   ->leftJoin('b.author', 'a');
+
+        if ($q !== '') {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->like('b.title', ':q'),
+                    $qb->expr()->like('a.name', ':q')
+                )
+            )
+            ->setParameter('q', '%'.$q.'%');
+}
+        if (!empty($loanDate)){
+            $qb->andWhere('r.loanDate = :loanDate')->setParameter('loanDate', new \DateTime($loanDate));
+        }
+
+        if (!empty($returnDate)){
+            $qb->andWhere('r.returnDate = :returnDate')->setParameter('returnDate', new \DateTime($returnDate));
+        }
+        $loans = $qb
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
         $deleteForms = [];
         foreach ($loans as $loan) {
             $deleteForms[$loan->getId()] = $this->createDeleteForm($loan)->createView();

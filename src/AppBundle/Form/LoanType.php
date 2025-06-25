@@ -9,7 +9,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\Reader;
 use AppBundle\Entity\Loan;
-use AppBundle\Form\LoanType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

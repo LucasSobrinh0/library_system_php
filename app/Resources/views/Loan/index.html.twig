@@ -3,6 +3,16 @@
 {% block body %}
 
 <h1>Emprestimos</h1>
+<form method="get" class="form-inline mb-3">
+    <input type="text"
+           name="q"
+           value="{{ search.q|default('') }}"
+           placeholder="Pesquisar Livro"
+           class="form-control mr-2">
+    <input type="date" name="loanDate" value="{{ app.request.get('loanDate') }}" class="form-control mr-2" placeholder="Data Empréstimo">
+    <input type="date" name="returnDate" value="{{ app.request.get('returnDate') }}" class="form-control mr-2" placeholder="Data Devolução">
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
 <table class="table">
     <thead>
       <tr>
